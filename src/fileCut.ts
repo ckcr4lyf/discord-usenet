@@ -2,12 +2,12 @@ import fs from 'fs';
 
 const MAX_SIZE = (2 ** 20) * 8; // 8MiB
 
-export const getChunks = () => {
+export const getChunks = (filename: string) => {
 
     const chunks = [];
     // fs.openSync()
     // fs.read()
-    const vid = fs.readFileSync('README.md', {
+    const vid = fs.readFileSync(filename, {
         
     });
 
