@@ -1,13 +1,18 @@
 import crypto from 'crypto';
 import fs from 'fs';
 
+export type Dorrent = {
+    filename: string,
+    pieces: pieceData[],
+};
+
 export type pieceData = {
     name: string;
     url: string;
 }
 
 export const saveDorrent = (filename: string, pieces: pieceData[]) => {
-    const dorrent = {
+    const dorrent: Dorrent = {
         filename: filename,
         pieces: pieces,
     }
