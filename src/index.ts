@@ -5,6 +5,7 @@ import crypto from 'crypto';
 import { getChunks } from './fileCut.js';
 import { performance } from 'perf_hooks';
 import { pieceData, saveDorrent } from './makeDorrent.js';
+import { downloadDorrent } from './downloadDorrent.js';
 
 const token = `MTA2MzY1NTYzMzExMjU1MTU1NQ.Gn58BL.ijNIOnuo-x6KaiUpSDRp6BW3U3ZOK3iRsGzUlA`;
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
@@ -28,6 +29,18 @@ client.on('messageCreate', async (msg) => {
 
     const attachments = [];
     const filename = msg.content;
+    const split = msg.content.split(' ');
+
+    if (split.length === 2){
+        if (split[0] === 'download'){
+            await downloadDorrent(split[1]);
+            msg.reply('download done');
+            return;
+        }
+
+        msg.reply('invalid');
+        return;
+    }
 
     let chunks: Buffer[];
     try {
