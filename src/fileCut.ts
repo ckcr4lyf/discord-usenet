@@ -1,8 +1,10 @@
+import { Buffer } from 'node:buffer';
 import fs from 'fs';
 
-const MAX_SIZE = (2 ** 20) * 8; // 8MiB
+// const MAX_SIZE = (2 ** 20) * 8; // 8MiB
+const MAX_SIZE = (1000 * 1000) * 8; // 8MB (8MiB is too big for webhook)
 
-export const getChunks = (filename: string) => {
+export const getChunks = (filename: string): Buffer[] => {
 
     const chunks = [];
     // fs.openSync()

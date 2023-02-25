@@ -9,8 +9,10 @@
         "esModuleInterop": true,
         "outDir": "./build/",
         "sourceMap": true,
-        "moduleResolution": "node",
+        "moduleResolution": "nodenext",
         "declaration": true,
+        "lib": ["ESNext"],
+        "types": []
     },
     "include": [
         "src/**/*",

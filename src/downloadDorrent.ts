@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { Dorrent } from './makeDorrent';
+import { Dorrent } from './makeDorrent.js';
 import axios from 'axios';
 
 export const downloadDorrent = async (dorrentFilename: string) => {
