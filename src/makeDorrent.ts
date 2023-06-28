@@ -1,5 +1,6 @@
 import crypto from 'crypto';
 import fs from 'fs';
+import { getLogger } from './logger.js';
 
 export type Dorrent = {
     filename: string,
@@ -12,6 +13,7 @@ export type pieceData = {
 }
 
 export const saveDorrent = (filename: string, pieces: pieceData[]) => {
+    const logger = getLogger();
     const dorrent: Dorrent = {
         filename: filename,
         pieces: pieces,
@@ -22,5 +24,5 @@ export const saveDorrent = (filename: string, pieces: pieceData[]) => {
     const infohash = hash.digest('hex');
 
     fs.writeFileSync(`${infohash}.dorrent`, JSON.stringify(dorrent));
-    console.log(`Wrote ${infohash}.dorrent`);
+    logger.info(`Wrote ${infohash}.dorrent`);
 }

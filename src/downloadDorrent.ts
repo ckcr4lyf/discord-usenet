@@ -2,15 +2,19 @@ import fs from 'fs';
 import { Dorrent } from './makeDorrent.js';
 import axios from 'axios';
 
-export const downloadDorrent = async (dorrentFilename: string) => {
-    const dorrentFile = fs.readFileSync(dorrentFilename);
-    const dorrentData: Dorrent = JSON.parse(dorrentFile.toString());
+/**
+ * Sends requests to download the different pieces of a dorrent 
+ * and writes them to a file, with a timestamp prefix.
+ * 
+ * @param dorrent The dorrent
+ */
+export const downloadDorrent = async (dorrent: Dorrent) => {
 
-    console.log(`gonna download ${dorrentData.filename}`);
+    console.log(`gonna download ${dorrent.filename}`);
 
     const chunks: Buffer[] = [];
 
-    for (let piece of dorrentData.pieces){
+    for (let piece of dorrent.pieces){
         console.log(`grabbing ${piece.name}`);
         const pieceData = await axios.get(piece.url, {
             responseType: 'arraybuffer'
@@ -22,5 +26,5 @@ export const downloadDorrent = async (dorrentFilename: string) => {
     console.log(`Got all, will save`);
     const fileData = Buffer.concat(chunks);
 
-    fs.writeFileSync(`${Date.now()}_${dorrentData.filename}`, fileData);
+    fs.writeFileSync(`${Date.now()}_${dorrent.filename}`, fileData);
 }

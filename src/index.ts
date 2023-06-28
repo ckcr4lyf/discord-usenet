@@ -4,8 +4,9 @@ import { AttachmentBuilder, Client, Events, GatewayIntentBits } from 'discord.js
 import crypto from 'crypto';
 import { getChunks } from './fileCut.js';
 import { performance } from 'perf_hooks';
-import { pieceData, saveDorrent } from './makeDorrent.js';
+import { Dorrent, pieceData, saveDorrent } from './makeDorrent.js';
 import { downloadDorrent } from './downloadDorrent.js';
+import fs from 'fs';
 
 const token = `MTA2MzY1NTYzMzExMjU1MTU1NQ.Gn58BL.ijNIOnuo-x6KaiUpSDRp6BW3U3ZOK3iRsGzUlA`;
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
@@ -33,7 +34,8 @@ client.on('messageCreate', async (msg) => {
 
     if (split.length === 2){
         if (split[0] === 'download'){
-            await downloadDorrent(split[1]);
+            const dorrent: Dorrent = JSON.parse(fs.readFileSync(split[1]).toString());
+            await downloadDorrent(dorrent);
             msg.reply('download done');
             return;
         }
