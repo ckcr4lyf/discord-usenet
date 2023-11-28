@@ -6,7 +6,7 @@ E.g. with cURL:
 
 ```
 # Set webhook URL
-export WEBHOOK_URL="https://discord.com/api/webhooks/1078880510438289438/Bm1_gXlnv2C8DHXJifMkIieVU5YkVxqm5bUnCONUxrj6Ln2uFQG4615JeIs-Pqzv9uE5"
+export WEBHOOK_URL="https://discord.com/api/webhooks/EXTRA/STUFF"
 
 # Generate 1MB of random data (test)
 

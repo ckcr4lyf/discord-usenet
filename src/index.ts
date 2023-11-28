@@ -8,7 +8,8 @@ import { Dorrent, pieceData, saveDorrent } from './makeDorrent.js';
 import { downloadDorrent } from './downloadDorrent.js';
 import fs from 'fs';
 
-const token = `MTA2MzY1NTYzMzExMjU1MTU1NQ.Gn58BL.ijNIOnuo-x6KaiUpSDRp6BW3U3ZOK3iRsGzUlA`;
+// Actually the bot method is not as good as webhook, so maybe we should remove this...
+const token = `INSERT_BOT_TOKEN`;
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
 
